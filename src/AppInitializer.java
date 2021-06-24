@@ -14,11 +14,10 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
-        AnchorPane root = FXMLLoader.load(this.getClass().getResource("/view/EditorForm.fxml"));
+        AnchorPane root = FXMLLoader.load(this.getClass().getResource("/view/TextEditorForm.fxml"));
         Scene mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
-        primaryStage.setTitle("Simple Text Editor");
+        primaryStage.setTitle("Text Editor");
         primaryStage.setMaximized(true);
         primaryStage.show();
     }
