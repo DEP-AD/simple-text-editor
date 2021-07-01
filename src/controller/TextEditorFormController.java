@@ -4,8 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import util.FXUtil;
 
-import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -19,10 +20,9 @@ public class TextEditorFormController {
     public TextField txtSearch;
 
     private int findOffSet = -1;
-    private List<Index> searchList   = new ArrayList<>();
-    private int searchIndex = 0;
+    private final List<Index> searchList = new ArrayList<>();
 
-    public void initialize(){
+    public void initialize() {
         pneFind.setVisible(false);
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
@@ -34,12 +34,17 @@ public class TextEditorFormController {
                 while (matcher.find()) {
                     searchList.add(new Index(matcher.start(), matcher.end()));
                 }
-            }
-            catch(PatternSyntaxException e){
+            } catch (PatternSyntaxException e) {
 
             }
         });
     }
+
+   /* private void searchMatches(String query){
+        FXUtil.highlightOnTextArea(txtEditor, query, Color.web("yellow",0.8)){
+
+        }
+    }*/
 
     public void mnuItemNew_OnAction(ActionEvent actionEvent) {
         txtEditor.clear();
@@ -62,33 +67,33 @@ public class TextEditorFormController {
     }
 
     public void btnFindNext_OnAction(ActionEvent actionEvent) {
-        if(!searchList.isEmpty()) {
-            if(findOffSet==-1){
-                findOffSet=0;
+        if (!searchList.isEmpty()) {
+            if (findOffSet == -1) {
+                findOffSet = 0;
             }
             txtEditor.selectRange(searchList.get(findOffSet).startingIndex, searchList.get(findOffSet).endIndex);
             findOffSet++;
-            if(findOffSet>=searchList.size()){
-                findOffSet=0;
+            if (findOffSet >= searchList.size()) {
+                findOffSet = 0;
             }
         }
     }
 
     public void btnFindPreview_OnAction(ActionEvent actionEvent) {
-        if(!searchList.isEmpty()) {
-            if(findOffSet==-1){
-                findOffSet=searchList.size()-1;
+        if (!searchList.isEmpty()) {
+            if (findOffSet == -1) {
+                findOffSet = searchList.size() - 1;
             }
             txtEditor.selectRange(searchList.get(findOffSet).startingIndex, searchList.get(findOffSet).endIndex);
             findOffSet--;
-            if(findOffSet<0){
-                findOffSet=searchList.size()-1;
+            if (findOffSet < 0) {
+                findOffSet = searchList.size() - 1;
             }
         }
     }
 }
 
-class Index{
+class Index {
     int startingIndex;
     int endIndex;
 
