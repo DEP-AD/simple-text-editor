@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -24,27 +25,32 @@ public class TextEditorFormController {
 
     public void initialize() {
         pneFind.setVisible(false);
-        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                Pattern regExp = Pattern.compile(newValue);
-                Matcher matcher = regExp.matcher(txtEditor.getText());
 
-                searchList.clear();
+        ChangeListener textListener = (ChangeListener<String>) (observable, oldValue, newValue) -> {
+            searchMatches(newValue);
+        };
 
-                while (matcher.find()) {
-                    searchList.add(new Index(matcher.start(), matcher.end()));
-                }
-            } catch (PatternSyntaxException e) {
-
-            }
-        });
+        txtSearch.textProperty().addListener(textListener);
     }
 
-   /* private void searchMatches(String query){
-        FXUtil.highlightOnTextArea(txtEditor, query, Color.web("yellow",0.8)){
+    private void searchMatches(String query){
+        FXUtil.highlightOnTextArea(txtEditor, query, Color.web("yellow",0.8));
 
+        Pattern regExp = Pattern.compile(query);
+        Matcher matcher = regExp.matcher(txtEditor.getText());
+
+        searchList.clear();
+
+        while (matcher.find()){
+            searchList.add(new Index(matcher.start(), matcher.end()));
         }
-    }*/
+
+        if(searchList.isEmpty()){
+            findOffSet=-1;
+        }
+
+
+    }
 
     public void mnuItemNew_OnAction(ActionEvent actionEvent) {
         txtEditor.clear();

@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FXUtil {
-    public void highlightOnTextArea(TextArea textArea, String regex, Color highlight){
+    public static void highlightOnTextArea(TextArea textArea, String regex, Color highlight){
         Text text = (Text) textArea.lookup("Text");
         Parent parent = textArea.lookup("Text").getParent().getParent();
         TextAreaSkin skin = (TextAreaSkin) textArea.getSkin();
