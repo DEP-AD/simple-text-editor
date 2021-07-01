@@ -19,6 +19,9 @@ public class TextEditorFormController {
     public TextArea txtEditor;
     public AnchorPane pneFind;
     public TextField txtSearch;
+    public TextField txtReplace;
+    public AnchorPane pneReplace;
+    public TextField txtSearch1;
 
     private int findOffSet = -1;
     private final List<Index> searchList = new ArrayList<>();
@@ -96,6 +99,12 @@ public class TextEditorFormController {
                 findOffSet = searchList.size() - 1;
             }
         }
+    }
+
+    public void btnReplace_OnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnReplaceAll_OnAction(ActionEvent actionEvent) {
     }
 }
 
