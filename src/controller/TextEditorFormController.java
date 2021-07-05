@@ -175,7 +175,28 @@ public class TextEditorFormController {
     }
 
     public void btnReplaceAll_OnAction(ActionEvent actionEvent) {
+        //1st method
+            /*Sring text = txtEditor.getText();
+            String replacedText = text.replaceAll(txtSearch1.getText(), txtReplace.getText());
+            txtEditor.setText(replacedText);*/
 
+//        try {
+//            String replacedText = Pattern.compile(txtSearch1.getText()).matcher(txtEditor.getText()).replaceAll(txtReplace.getText());
+//            txtEditor.setText(replacedText);
+//        }catch (PatternSyntaxException e){
+//            //There is nothing to do here
+//        }
+
+//        for (int i = 0; i < searchList.size(); i++) {
+//            txtEditor.replaceText(searchList.get(i).startingIndex,searchList.get(i).endIndex,txtReplace.getText());
+//            searchMatches(txtSearch1.getText());
+//            i=-1;
+//        }
+
+       while (!searchList.isEmpty()) {
+           txtEditor.replaceText(searchList.get(0).startingIndex, searchList.get(0).endIndex, txtReplace.getText());
+           searchMatches(txtSearch1.getText());
+       }
     }
 
     //Regular Inner Class
