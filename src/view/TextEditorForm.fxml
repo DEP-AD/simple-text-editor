@@ -54,7 +54,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindPreview_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="↑" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Button layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindPrevious_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="↑" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -69,7 +69,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindPreview_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="↑" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Button layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindPrevious_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="↑" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

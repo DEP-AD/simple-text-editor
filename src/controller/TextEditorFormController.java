@@ -85,25 +85,32 @@ public class TextEditorFormController {
 
         //Method 4 - using lamda expresion
         ChangeListener textListener = (ChangeListener<String>) (observable, oldValue, newValue) -> {
-                FXUtil.highlightOnTextArea(txtEditor, newValue, Color.web("yellow",0.8));
-
-                try {
-                    Pattern regExp = Pattern.compile(newValue);
-                    Matcher matcher = regExp.matcher(txtEditor.getText());
-
-                    searchList.clear();
-
-                    while (matcher.find()) {
-                        searchList.add(new Index(matcher.start(), matcher.end()));
-                    }
-                }catch (PatternSyntaxException e){
-
-                }
+                searchMatches(newValue);
         };
         txtSearch.textProperty().addListener(textListener);
         txtSearch1.textProperty().addListener(textListener);
     }
 
+    private void searchMatches(String query){
+        FXUtil.highlightOnTextArea(txtEditor, query, Color.web("yellow",0.8));
+
+        try {
+            Pattern regExp = Pattern.compile(query);
+            Matcher matcher = regExp.matcher(txtEditor.getText());
+
+            searchList.clear();
+
+            while (matcher.find()) {
+                searchList.add(new Index(matcher.start(), matcher.end()));
+            }
+
+            if(searchList.isEmpty()){
+                findOffSet = -1;
+            }
+        }catch (PatternSyntaxException e){
+
+        }
+    }
 
     public void mnuItemNew_OnAction(ActionEvent actionEvent) {
         txtEditor.clear();
@@ -135,34 +142,40 @@ public class TextEditorFormController {
 
     public void btnFindNext_OnAction(ActionEvent actionEvent) {
         if (!searchList.isEmpty()) {
-            if (findOffSet == -1) {
+            /*if (findOffSet == -1) {
                 findOffSet = 0;
-            }
+            }else {*/
+                findOffSet++;
+                if (findOffSet >= searchList.size()) {
+                    findOffSet = 0;
+                }
+            //}
             txtEditor.selectRange(searchList.get(findOffSet).startingIndex, searchList.get(findOffSet).endIndex);
-            findOffSet++;
-            if (findOffSet >= searchList.size()) {
-                findOffSet = 0;
-            }
         }
     }
 
-    public void btnFindPreview_OnAction(ActionEvent actionEvent) {
+    public void btnFindPrevious_OnAction(ActionEvent actionEvent) {
         if (!searchList.isEmpty()) {
-            if (findOffSet == -1) {
+            /*if (findOffSet == -1) {
                 findOffSet = searchList.size() - 1;
-            }
+            }else{*/
+                findOffSet--;
+                if (findOffSet < 0) {
+                    findOffSet = searchList.size() - 1;
+                }
+           // }
             txtEditor.selectRange(searchList.get(findOffSet).startingIndex, searchList.get(findOffSet).endIndex);
-            findOffSet--;
-            if (findOffSet < 0) {
-                findOffSet = searchList.size() - 1;
-            }
         }
     }
 
     public void btnReplace_OnAction(ActionEvent actionEvent) {
+        if(findOffSet == -1) return;
+        txtEditor.replaceText(searchList.get(findOffSet).startingIndex,searchList.get(findOffSet).endIndex,txtReplace.getText());
+        searchMatches(txtSearch1.getText());
     }
 
     public void btnReplaceAll_OnAction(ActionEvent actionEvent) {
+
     }
 
     //Regular Inner Class
