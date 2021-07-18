@@ -18,9 +18,11 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#mnuItemNew_OnAction" text="New" />
-                  <MenuItem mnemonicParsing="false" text="Open" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save As" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuFileOpen_OnAction" text="Open" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuSave_OnAction" text="Save" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuSaveAs_OnAction" text="Save As" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuPageSetup_OnAction" text="Page Setup" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuPrint_OnAction" text="Print" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#mnuItemQuit_OnAction" text="Quit" />
             </items>
@@ -49,12 +51,12 @@
       <AnchorPane fx:id="pneFind" layoutX="789.0" opacity="0.95" prefHeight="46.0" prefWidth="330.0" style="-fx-background-color: #CDF4EA;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <TextField fx:id="txtSearch" layoutX="14.0" layoutY="10.0" prefHeight="25.0" prefWidth="210.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="10.0" />
-            <Button layoutX="232.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindNext_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="↓" textFill="#2f0404" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="10.0">
+            <Button layoutX="232.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindNext_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="﹀" textFill="#2f0404" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindPrevious_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="↑" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Button layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindPrevious_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="︿" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -64,12 +66,12 @@
       <AnchorPane fx:id="pneReplace" layoutX="779.0" layoutY="6.0" opacity="0.95" prefHeight="81.0" prefWidth="330.0" style="-fx-background-color: #CDF4EA;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <TextField fx:id="txtSearch1" layoutX="14.0" layoutY="10.0" prefHeight="25.0" prefWidth="210.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="10.0" />
-            <Button layoutX="232.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindNext_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="↓" textFill="#2f0404" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="10.0">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="232.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindNext_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="﹀" textAlignment="CENTER" textFill="#2f0404" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindPrevious_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="↑" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Button alignment="CENTER" layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnFindPrevious_OnAction" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #28AAB5;" text="︿" textAlignment="CENTER" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

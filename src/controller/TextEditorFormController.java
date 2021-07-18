@@ -3,12 +3,15 @@ package controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.print.PrinterJob;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import util.FXUtil;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -26,10 +29,12 @@ public class TextEditorFormController {
 
     private int findOffSet = -1;
     private final List<Index> searchList = new ArrayList<>();
+    private PrinterJob printerJob;
 
     public void initialize() {
         pneFind.setVisible(false);
         pneReplace.setVisible(false);
+        this.printerJob=PrinterJob.createPrinterJob();
 
         //Local Inner Class
         /*class TextListener implements ChangeListener<String>{
@@ -198,6 +203,71 @@ public class TextEditorFormController {
            searchMatches(txtSearch1.getText());
        }
     }
+
+    public void mnuSave_OnAction(ActionEvent actionEvent) {
+
+       /* if()
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        File file = fileChooser.showSaveDialog(txtEditor.getScene().getWindow());
+
+        if(file==null) return;
+
+        try (FileWriter fileWriter = new FileWriter(file);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)){
+            bufferedWriter.write(txtEditor.getText());
+        }catch (IOException e){
+            e.printStackTrace();
+        }*/
+    }
+
+    public void mnuSaveAs_OnAction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        File file = fileChooser.showOpenDialog(txtEditor.getScene().getWindow());
+
+        if(file == null) return;
+
+        try (FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw)){
+            bw.write(txtEditor.getText());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void mnuPageSetup_OnAction(ActionEvent actionEvent) {
+        printerJob.showPageSetupDialog(txtEditor.getScene().getWindow());
+    }
+
+    public void mnuPrint_OnAction(ActionEvent actionEvent) {
+        printerJob.showPrintDialog(txtEditor.getScene().getWindow());
+        printerJob.printPage(txtEditor.lookup("Text"));
+    }
+
+    public void mnuFileOpen_OnAction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Text Files", "*.txt","*.html"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*"));
+        File file = fileChooser.showOpenDialog(txtEditor.getScene().getWindow());
+
+        if(file==null) return;
+
+        txtEditor.clear();
+        try(FileReader fileReader = new FileReader(file);
+            BufferedReader br = new BufferedReader(fileReader)){
+
+            StringBuilder sb = new StringBuilder();
+            String line =null;
+            while ((line = br.readLine()) != null){
+                txtEditor.appendText(line+'\n');
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
     //Regular Inner Class
     /*private class TextListener implements ChangeListener<String>{
